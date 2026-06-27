@@ -1,6 +1,6 @@
-# Maintaining Guide for hardlog
+# Maintaining Guide for hardlogger
 
-This guide explains how to maintain, update, and release new versions of the hardlog package.
+This guide explains how to maintain, update, and release new versions of the hardlogger package.
 
 ## Table of Contents
 - [Development Setup](#development-setup)
@@ -25,8 +25,8 @@ This guide explains how to maintain, update, and release new versions of the har
 
 ```bash
 # Clone the repository
-git clone https://github.com/Rdrudra99/hardlog.git
-cd hardlog
+git clone https://github.com/rudranboitei/hardlogger.git
+cd hardlogger
 
 # Install dependencies
 bun install
@@ -43,7 +43,7 @@ bun run dev
 ## Project Structure
 
 ```
-hardlog/
+hardlogger/
 ├── src/                    # TypeScript source files
 │   ├── index.ts           # Main entry point & exports
 │   ├── logger.ts          # Core logging implementation
@@ -241,17 +241,17 @@ cat dist/index.js
 
 ```bash
 # Create a test directory
-mkdir -p /tmp/hardlog-test
-cd /tmp/hardlog-test
+mkdir -p /tmp/hardlogger-test
+cd /tmp/hardlogger-test
 
 # Initialize test project
 bun init -y
 
 # Install local package
-bun add /path/to/hardlog
+bun add /path/to/hardlogger
 
 # Test it
-echo 'import log from "@rdrudra99/hardlog"; log.success("Test");' > test.js
+echo 'import log from "hardlogger"; log.success("Test");' > test.js
 bun test.js
 ```
 
@@ -284,7 +284,7 @@ git push origin --tags
 
 #### 9. Create GitHub Release
 
-1. Go to https://github.com/Rdrudra99/hardlog/releases
+1. Go to https://github.com/rudranboitei/hardlogger/releases
 2. Click "Draft a new release"
 3. Select the version tag
 4. Title: `v0.1.0` (or current version)
@@ -295,59 +295,40 @@ git push origin --tags
 
 ## Testing
 
-### Manual Testing Script
+The project contains a test suite in the `tests/` directory written in TypeScript.
 
-Create `test-manual.js` in project root:
+### Manual Test Suite
 
-```javascript
-// Test Node.js environment
-import log from './dist/index.js';
-
-console.log('=== Testing hardlog ===\n');
-
-// Test all log levels
-log.success('✅ Success message test');
-log.error('❌ Error message test');
-log.warn('⚠️  Warning message test');
-log.info('ℹ️  Info message test');
-
-// Test configuration
-console.log('\n=== Testing with timestamp ===\n');
-log.config({ showTimestamp: true });
-log.info('Message with timestamp');
-
-// Test production mode
-console.log('\n=== Testing production mode ===\n');
-process.env.NODE_ENV = 'production';
-log.config({ enabled: false });
-log.info('This should NOT appear');
-
-// Re-enable
-process.env.NODE_ENV = 'development';
-log.config({ enabled: true, showTimestamp: false });
-log.success('Back in development mode');
-
-console.log('\n=== All tests complete ===');
-```
-
-Run tests:
+You can run the full test suite with:
 
 ```bash
-bun test-manual.js
+# Runs both manual and multiple arguments tests
+bun run manual:test
+```
+
+Alternatively, you can run the test files individually:
+
+```bash
+# Run core logging functionality test
+bun tests/manual.test.ts
+
+# Run multiple arguments test
+bun tests/multiple-args.test.ts
 ```
 
 ### Browser Testing
 
-Create `test-browser.html`:
+To test in browser environments, create a local HTML file (e.g., `test-browser.html` in the root directory):
 
 ```html
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>hardlog Browser Test</title>
+    <meta charset="UTF-8">
+    <title>hardlogger Browser Test</title>
 </head>
 <body>
-    <h1>Check Browser Console</h1>
+    <h1>Check Browser Developer Console (F12)</h1>
     <script type="module">
         import log from './dist/index.js';
         
@@ -355,12 +336,13 @@ Create `test-browser.html`:
         log.error('Browser error test');
         log.warn('Browser warning test');
         log.info('Browser info test');
+        log.info('Multiple arguments support test:', { user: 'rudranboitei', active: true });
     </script>
 </body>
 </html>
 ```
 
-Open in browser and check console.
+Open the file in any modern web browser and inspect the developer tools console.
 
 ---
 
@@ -437,10 +419,10 @@ bun run build
 
 ```bash
 # Unpublish within 72 hours (npm policy)
-npm unpublish @rdrudra99/hardlog@0.1.1
+npm unpublish hardlogger@1.2.0
 
 # Or deprecate instead (preferred)
-npm deprecate @rdrudra99/hardlog@0.1.1 "Broken release, use 0.1.2 instead"
+npm deprecate hardlogger@1.2.0 "Broken release, use 1.2.1 instead"
 
 # Fix issue and publish new version
 npm version patch
@@ -451,7 +433,7 @@ npm publish
 
 ```bash
 # Tag previous version as latest
-npm dist-tag add @rdrudra99/hardlog@0.1.0 latest
+npm dist-tag add hardlogger@1.1.1 latest
 
 # Fix and release new version
 npm version patch
@@ -462,8 +444,8 @@ npm publish
 
 ## Support and Questions
 
-- GitHub Issues: https://github.com/Rdrudra99/hardlog/issues
-- GitHub Discussions: https://github.com/Rdrudra99/hardlog/discussions
+- GitHub Issues: https://github.com/rudranboitei/hardlogger/issues
+- GitHub Discussions: https://github.com/rudranboitei/hardlogger/discussions
 - Email: [Your Email]
 
 ---
@@ -485,7 +467,7 @@ npm publish
 - [ ] GitHub release created
 
 ## Post-Release
-- [ ] Package installable (bun add hardlog)
+- [ ] Package installable (bun add hardlogger)
 - [ ] Verify on npmjs.com
 - [ ] Test in fresh project
 - [ ] Monitor for issues
@@ -494,4 +476,4 @@ npm publish
 ---
 
 **Last Updated**: January 9, 2026
-**Maintainer**: Rdrudra99
+**Maintainer**: rudranboitei

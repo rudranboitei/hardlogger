@@ -1,6 +1,6 @@
-# Contributing to hardlog
+# Contributing to hardlogger
 
-Thank you for considering contributing to hardlog! This document provides guidelines and instructions for contributing.
+Thank you for considering contributing to hardlogger! This document provides guidelines and instructions for contributing.
 
 ## Table of Contents
 - [Code of Conduct](#code-of-conduct)
@@ -37,7 +37,7 @@ Clear description of the bug
 
 **To Reproduce**
 Steps to reproduce the behavior:
-1. Import hardlog
+1. Import hardlogger
 2. Call log.success('...')
 3. See error
 
@@ -48,7 +48,7 @@ What you expected to happen
 - Node.js version: [e.g., 18.0.0]
 - Bun version: [e.g., 1.0.0]
 - Browser: [e.g., Chrome 120]
-- hardlog version: [e.g., 0.1.0]
+- hardlogger version: [e.g., 0.1.0]
 - OS: [e.g., macOS, Windows, Linux]
 
 **Additional Context**
@@ -74,7 +74,7 @@ How would you implement this?
 
 **Example Usage**
 ```typescript
-import log from '@rdrudra99/hardlog';
+import log from 'hardlogger';
 log.newFeature('example');
 ```
 
@@ -94,8 +94,8 @@ We love pull requests! Here's how to contribute:
 
 ```bash
 # Fork the repo on GitHub, then:
-git clone https://github.com/YOUR_USERNAME/hardlog.git
-cd hardlog
+git clone https://github.com/YOUR_USERNAME/hardlogger.git
+cd hardlogger
 ```
 
 ### 2. Install Dependencies
@@ -129,7 +129,7 @@ bun run build
 ls -la dist/
 
 # Manual test
-bun test-manual.js
+bun run manual:test
 ```
 
 ### 6. Commit Your Changes
@@ -365,7 +365,7 @@ Test both environments:
 
 ```bash
 # Node.js
-bun test-manual.js
+bun run manual:test
 
 # Browser
 # Open test-browser.html in browser
@@ -431,4 +431,4 @@ Logs stuff
 
 ---
 
-Thank you for contributing to hardlog! 🎉
+Thank you for contributing to hardlogger! 🎉

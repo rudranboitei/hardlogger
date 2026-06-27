@@ -34,6 +34,16 @@ const LOG_CONFIG = {
 } as const;
 
 /**
+ * Console method mapping for each log level to ensure proper stream output
+ */
+const CONSOLE_METHODS = {
+  success: 'log',
+  error: 'error',
+  warn: 'warn',
+  info: 'info',
+} as const;
+
+/**
  * Logger class - handles all logging operations
  */
 class Logger {
@@ -80,13 +90,14 @@ class Logger {
   /**
    * Log message in Node.js with ANSI colors
    */
-  private logNode(level: LogLevel, ...args: any[]): void {
+  private logNode(level: LogLevel, ...args: unknown[]): void {
     try {
       const cfg = LOG_CONFIG[level];
       const timestamp = this.config.showTimestamp ? `${this.getTimestamp()} ` : '';
       const prefix = `${cfg.color}${cfg.symbol} ${cfg.label.padEnd(10)}${ANSI_COLORS.reset} ${timestamp}`;
+      const method = CONSOLE_METHODS[level];
       
-      console.log(prefix, ...args);
+      console[method](prefix, ...args);
     } catch {
       // Fail silently
     }
@@ -95,13 +106,14 @@ class Logger {
   /**
    * Log message in browser with CSS styling
    */
-  private logBrowser(level: LogLevel, ...args: any[]): void {
+  private logBrowser(level: LogLevel, ...args: unknown[]): void {
     try {
       const cfg = LOG_CONFIG[level];
       const timestamp = this.config.showTimestamp ? `${this.getTimestamp()} ` : '';
       const label = `${cfg.symbol} ${cfg.label}`;
+      const method = CONSOLE_METHODS[level];
       
-      console.log(`%c${label}%c ${timestamp}`, BROWSER_STYLES[level], '', ...args);
+      console[method](`%c${label}%c ${timestamp}`, BROWSER_STYLES[level], '', ...args);
     } catch {
       // Fail silently
     }
@@ -110,7 +122,7 @@ class Logger {
   /**
    * Core log method - routes to appropriate handler
    */
-  private log(level: LogLevel, ...args: any[]): void {
+  private log(level: LogLevel, ...args: unknown[]): void {
     // Don't log if disabled
     if (!this.config.enabled) {
       return;
@@ -119,11 +131,8 @@ class Logger {
     try {
       if (this.runtime === 'node') {
         this.logNode(level, ...args);
-      } else if (this.runtime === 'browser') {
-        this.logBrowser(level, ...args);
       } else {
-        // Fallback to plain console.log
-        console.log(`[${level.toUpperCase()}]`, ...args);
+        this.logBrowser(level, ...args);
       }
     } catch {
       // Fail silently - never break user's app
@@ -133,28 +142,28 @@ class Logger {
   /**
    * Log success message
    */
-  public success(...args: any[]): void {
+  public success(...args: unknown[]): void {
     this.log('success', ...args);
   }
 
   /**
    * Log error message
    */
-  public error(...args: any[]): void {
+  public error(...args: unknown[]): void {
     this.log('error', ...args);
   }
 
   /**
    * Log warning message
    */
-  public warn(...args: any[]): void {
+  public warn(...args: unknown[]): void {
     this.log('warn', ...args);
   }
 
   /**
    * Log info message
    */
-  public info(...args: any[]): void {
+  public info(...args: unknown[]): void {
     this.log('info', ...args);
   }
 }

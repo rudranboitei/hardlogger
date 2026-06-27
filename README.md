@@ -2,7 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/hardlogger.svg)](https://www.npmjs.com/package/hardlogger)
 [![npm downloads](https://img.shields.io/npm/dm/hardlogger.svg)](https://www.npmjs.com/package/hardlogger)
-[![license](https://img.shields.io/npm/l/hardlogger.svg)](https://github.com/Rdrudra99/hardlog/blob/main/LICENSE)
+[![license](https://img.shields.io/npm/l/hardlogger.svg)](https://github.com/rudranboitei/hardlogger/blob/main/LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 
 Beautiful, colorful dev-only logging for Node.js and Browser with **zero configuration**.
@@ -42,6 +42,17 @@ log.warn('Missing environment variable');
 log.info('Listening on port 3000');
 ```
 
+### Named Exports (ES Modules)
+
+In addition to the default export, `hardlogger` also supports named exports for better tree-shaking and cleaner ES Modules integration:
+
+```typescript
+import { success, error, warn, info } from 'hardlogger';
+
+success('Server started successfully!');
+error('Database connection failed');
+```
+
 ### Output in Node.js Terminal
 ```
 ✔ SUCCESS    Server started successfully!
@@ -54,14 +65,15 @@ log.info('Listening on port 3000');
 
 ### 🖥️ Backend (Node.js / Express)
 
-**After**<img width="1154" height="674" alt="screenzy-1768108979808" src="https://github.com/user-attachments/assets/855695c4-4722-41f2-a735-951ffcf2b0f8" />
+**After**
+<img width="1536" height="1024" alt="ChatGPT Image Jun 27, 2026, 10_31_41 AM" src="https://github.com/user-attachments/assets/c575ffe3-b6e0-4998-bcc0-fc636e0f55c6" />
 
 
 
 
 ### 🌐 Frontend (React / Next.js)
 
-<img width="1000" height="504" alt="screenzy-1768108932436" src="https://github.com/user-attachments/assets/8934cfeb-068a-4ee5-a5b6-aff28204f009" />
+<img width="1536" height="1024" alt="ChatGPT Image Jun 27, 2026, 10_31_48 AM" src="https://github.com/user-attachments/assets/fa08fe7a-add1-48c8-ab9b-6807dc5baf95" />
 
 
 
@@ -329,7 +341,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
-MIT © Rdrudra99
+MIT © rudranboitei
 
 ## Related Projects
 

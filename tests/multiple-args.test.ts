@@ -1,5 +1,7 @@
 // Test multiple arguments feature
-const log = require('./dist/index.js').default;
+// Run with: bun tests/multiple-args.test.ts
+
+import log from '../dist/index.js';
 
 console.log('\n=== Testing Multiple Arguments Support ===\n');
 

@@ -1,7 +1,7 @@
 // Manual test script for hardlog
-// Run with: bun test-manual.js
+// Run with: bun tests/manual.test.ts
 
-import log from './dist/index.js';
+import log from '../dist/index.js';
 
 console.log('=== Testing hardlog ===\n');
 
@@ -25,7 +25,7 @@ log.config({ showTimestamp: false }).success('Chained config works!');
 console.log('\n4. Testing production mode (should NOT show logs):');
 const originalEnv = process.env.NODE_ENV;
 process.env.NODE_ENV = 'production';
-// Need to reload module or manually set config
+// Manually set config for test scope
 log.config({ enabled: false });
 log.info('This should NOT appear in production');
 log.success('This should also NOT appear');

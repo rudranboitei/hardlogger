@@ -18,7 +18,7 @@ export interface LoggerConfig {
 /**
  * Runtime environment type
  */
-export type RuntimeEnvironment = 'node' | 'browser' | 'unknown';
+export type RuntimeEnvironment = 'node' | 'browser';
 
 /**
  * Log level type

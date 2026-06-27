@@ -1,9 +1,18 @@
 {
   "name": "hardlogger",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Beautiful, colorful dev-only logging for Node.js and Browser with zero configuration",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "sideEffects": false,
   "files": [
     "dist",
     "README.md",
@@ -14,7 +23,8 @@
     "prepublishOnly": "bun run build",
     "watch": "tsc --watch",
     "dev": "tsc --watch",
-    "test": "bun test-manual.js",
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "manual:test": "bun tests/manual.test.ts && bun tests/multiple-args.test.ts",
     "clean": "rm -rf dist/"
   },
   "keywords": [
@@ -37,23 +47,28 @@
     "ansi",
     "styled",
     "zero-config",
-    "dev-tools"
+    "dev-tools",
+    "react",
+    "vite",
+    "developer",
+    "developer-tools",
+    "terminal-logger"
   ],
-  "author": "Rdrudra99",
+  "author": "Rudra Narayan Boitei (@rudranboitei)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Rdrudra99/hardlogger.git"
+    "url": "git+https://github.com/rudranboitei/hardlogger.git"
   },
   "bugs": {
-    "url": "https://github.com/Rdrudra99/hardlogger/issues"
+    "url": "https://github.com/rudranboitei/hardlogger/issues"
   },
-  "homepage": "https://github.com/Rdrudra99/hardlogger#readme",
+  "homepage": "https://github.com/rudranboitei/hardlogger#readme",
   "devDependencies": {
     "@types/node": "^25.0.3",
     "typescript": "^5.3.3"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=16.0.0"
   }
 }

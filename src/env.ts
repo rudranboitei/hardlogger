@@ -30,17 +30,10 @@ export function isNode(): boolean {
  * Detect the current runtime environment
  */
 export function detectEnvironment(): RuntimeEnvironment {
-  try {
-    if (isBrowser()) {
-      return 'browser';
-    }
-    if (isNode()) {
-      return 'node';
-    }
-    return 'unknown';
-  } catch {
-    return 'unknown';
+  if (isBrowser()) {
+    return 'browser';
   }
+  return 'node';
 }
 
 /**
@@ -48,13 +41,18 @@ export function detectEnvironment(): RuntimeEnvironment {
  */
 export function isProduction(): boolean {
   try {
-    if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV) {
-      return process.env.NODE_ENV === 'production';
+    // Check Node.js / Webpack
+    if (typeof process !== 'undefined' && process.env?.NODE_ENV === 'production') {
+      return true;
     }
-    return false;
+    // Check Vite / Bun / Modern ESM bundlers
+    if (typeof import.meta !== 'undefined' && (import.meta as any).env?.PROD) {
+      return true;
+    }
   } catch {
-    return false;
+    // Fallback safely
   }
+  return false;
 }
 
 /**

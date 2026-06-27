@@ -2,6 +2,64 @@ import { logger } from './logger.js';
 import type { LoggerConfig } from './types.js';
 
 /**
+ * Public interface for Hardlogger
+ */
+export interface Hardlogger {
+  /**
+   * Log a success message
+   */
+  success(...args: unknown[]): void;
+
+  /**
+   * Log an error message
+   */
+  error(...args: unknown[]): void;
+
+  /**
+   * Log a warning message
+   */
+  warn(...args: unknown[]): void;
+
+  /**
+   * Log an info message
+   */
+  info(...args: unknown[]): void;
+
+  /**
+   * Configure logger options
+   */
+  config(options: LoggerConfig): Hardlogger;
+}
+
+/**
+ * Log a success message
+ */
+export const success = (...args: unknown[]): void => logger.success(...args);
+
+/**
+ * Log an error message
+ */
+export const error = (...args: unknown[]): void => logger.error(...args);
+
+/**
+ * Log a warning message
+ */
+export const warn = (...args: unknown[]): void => logger.warn(...args);
+
+/**
+ * Log an info message
+ */
+export const info = (...args: unknown[]): void => logger.info(...args);
+
+/**
+ * Configure logger options
+ */
+export const config = (options: LoggerConfig): Hardlogger => {
+  logger.configure(options);
+  return log;
+};
+
+/**
  * Dev-only logger with beautiful, colorful output
  * 
  * Automatically detects Node.js or Browser environment and applies appropriate styling.
@@ -29,35 +87,14 @@ import type { LoggerConfig } from './types.js';
  * log.config({ enabled: true, showTimestamp: true });
  * ```
  */
-const log = {
-  /**
-   * Log a success message
-   */
-  success: (...args: any[]) => logger.success(...args),
-
-  /**
-   * Log an error message
-   */
-  error: (...args: any[]) => logger.error(...args),
-
-  /**
-   * Log a warning message
-   */
-  warn: (...args: any[]) => logger.warn(...args),
-
-  /**
-   * Log an info message
-   */
-  info: (...args: any[]) => logger.info(...args),
-
-  /**
-   * Configure logger options
-   */
-  config: (options: LoggerConfig) => {
-    logger.configure(options);
-    return log;
-  },
+const log: Hardlogger = {
+  success,
+  error,
+  warn,
+  info,
+  config,
 };
 
 export default log;
 export type { LoggerConfig };
+
