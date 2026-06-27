@@ -65,11 +65,11 @@ error('Database connection failed');
 
 ### 🖥️ Backend (Node.js / Express)
 
-![Node.js Logging Output](assets/hardloggernode.webp)
+![Node.js Logging Output](https://raw.githubusercontent.com/rudranboitei/hardlogger/main/assets/hardloggernode.webp)
 
 ### 🌐 Frontend (React / Next.js)
 
-![Browser Logging Output](assets/hardloggerbroswer.webp)
+![Browser Logging Output](https://raw.githubusercontent.com/rudranboitei/hardlogger/main/assets/hardloggerbroswer.webp)
 
 
 
