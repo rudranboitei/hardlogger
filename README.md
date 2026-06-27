@@ -65,15 +65,11 @@ error('Database connection failed');
 
 ### 🖥️ Backend (Node.js / Express)
 
-**After**
-<img width="1536" height="1024" alt="ChatGPT Image Jun 27, 2026, 10_31_41 AM" src="https://github.com/user-attachments/assets/c575ffe3-b6e0-4998-bcc0-fc636e0f55c6" />
-
-
-
+![Node.js Logging Output](assets/hardloggernode.webp)
 
 ### 🌐 Frontend (React / Next.js)
 
-<img width="1536" height="1024" alt="ChatGPT Image Jun 27, 2026, 10_31_48 AM" src="https://github.com/user-attachments/assets/fa08fe7a-add1-48c8-ab9b-6807dc5baf95" />
+![Browser Logging Output](assets/hardloggerbroswer.webp)
 
 
 
